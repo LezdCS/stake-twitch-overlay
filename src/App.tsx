@@ -6,6 +6,7 @@ import WagerProgessBar from './components/wager_progress_bar/WagerProgressBar';
 const App: React.FC = () => {
 
   const [token, setToken] = useState<string>(getCook("TOKEN"));
+  const [wagerGoal, setWagerGoal] = useState<number>(Number(getCook("WAGER_GOAL")));
 
   function getCook(cookiename:string) {
     // Get name followed by anything except a semicolon
@@ -17,9 +18,9 @@ const App: React.FC = () => {
   return (
     <div className="App">
 
-      <WagerProgessBar token={token} goal={45000}></WagerProgessBar>
+      <WagerProgessBar token={token} goal={wagerGoal}></WagerProgessBar>
 
-      <Settings token={token} setToken={setToken}></Settings>
+      <Settings token={token} setToken={setToken} wagerGoal={wagerGoal} setWagerGoal={setWagerGoal}></Settings>
     </div>
   );
 }

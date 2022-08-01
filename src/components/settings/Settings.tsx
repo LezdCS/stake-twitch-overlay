@@ -3,21 +3,22 @@ import './Settings.scss'
 
 type SettingsProps = {
     token: string,
-    setToken: Function
-}
+    setToken: Function,
+    wagerGoal: number,
+    setWagerGoal: Function,
+}   
 
-const Settings: React.FC<SettingsProps> = ({token, setToken}) => {
+const Settings: React.FC<SettingsProps> = ({token, setToken, wagerGoal, setWagerGoal}) => {
 
     return (
         <div className='settings'> 
+            <label>API Token:
+                <input value={token} onChange={e => {document.cookie = `TOKEN=${(e.target.value)}`; setToken(e.target.value)}} type="password"></input>
+            </label>
 
-        <label>API Token:
-            <input value={token} onChange={e => {document.cookie = `TOKEN=${(e.target.value)}`; setToken(e.target.value)}} type="password"></input>
-        </label>
-
-        {/* <label>Wager goal:
-            <input type="text" value={0}></input>
-        </label> */}
+            <label>Wager goal:
+                <input type="text" value={wagerGoal} onChange={e => {document.cookie = `WAGER_GOAL=${(e.target.value)}`; setWagerGoal(e.target.value)}}></input>
+            </label>
         </div>
     );
 }
