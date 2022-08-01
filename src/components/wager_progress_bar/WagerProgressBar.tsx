@@ -100,7 +100,7 @@ const WagerProgessBar: React.FC<WagerProps> = ({token, goal}) => {
             if(data.errors || data.data.user.activeRollovers === null){
               return
             }
-            setProgress(data.data.user.activeRollovers[0].progress)
+            setProgress(data.data.user.activeRollovers[0].progress*100)
         });
 
     }
