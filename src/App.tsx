@@ -6,7 +6,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
 
-      <WagerProgessBar token={process.env.TOKEN!} goal={45000}></WagerProgessBar>
+      <WagerProgessBar token={process.env.REACT_APP_TOKEN!} goal={45000}></WagerProgessBar>
 
     </div>
   );
