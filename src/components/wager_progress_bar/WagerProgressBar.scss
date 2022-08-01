@@ -1,18 +1,35 @@
-.wager{
-    background-color: #101c4080;
+.progress-bar{
+    position: absolute;
+    top: 0;
+    left: 0;
+
     width: 20%;
-    padding: 1px 0rem;
-    text-align: center;
-    border-radius: 16px;
+    height: 50px;
     color: white;
     font-size: 20px;
-    border: 1px #1b1d1f90 solid;
+    border: 1px #1b1d1f solid;
+    border-radius: 16px;
+    background-color: #101c4080;
+        
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    &__progress-bar{
-        &__text{
-            &__percentage{
-                font-size: 16px;
-            }
+    overflow: hidden;
+
+    &__in{
+        height: 50px;
+        overflow: hidden;
+        background-color: rgba(124, 45, 189, 0.616);
+        position: absolute;
+        left: 0;
+        transition: width 1s ease-in-out;
+    }
+
+    &__text{
+        z-index: 100;
+        &__percentage{
+            font-size: 16px;
         }
     }
 }

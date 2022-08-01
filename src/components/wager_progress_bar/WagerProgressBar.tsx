@@ -53,19 +53,20 @@ const WagerProgessBar: React.FC<WagerProps> = ({token, goal}) => {
         //     setProgress(data.user.flagProgress.progress)
         // });
 
-        setProgress(prev => (prev + 0.00564874))
+        setProgress(prev => (prev + 0.987984))
     }
      
 
   return (
-    <div className='wager'> 
-        <div className='wager__progress-bar'>
-            <p className='wager__progress-bar__text'>
+        <div className='progress-bar'>
+            <div className='progress-bar__in' style={{width: ` ${progress}%`}}></div>
+
+            <p className='progress-bar__text'>
             ${(Math.round(goal*(progress/100) * 100) / 100).toFixed(2)} / ${goal} 
-             <span className='wager__progress-bar__text__percentage'> ({(Math.round(progress * 100) / 100).toFixed(2)}%)</span>
+             <span className='progress-bar__text__percentage'> ({(Math.round(progress * 100) / 100).toFixed(2)}%)</span>
             </p>
+
         </div>
-    </div>
   );
 }
 
