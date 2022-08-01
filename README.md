@@ -21,4 +21,4 @@ You will need to install the serve package:
 Finally, start the server:
 `serve -s build -l 4000` where 4000 is the port, you can change it
 
-Made by Aimebap & Lezd
+Made by [Aimebap](https://www.twitch.tv/aimebap) & Lezd
