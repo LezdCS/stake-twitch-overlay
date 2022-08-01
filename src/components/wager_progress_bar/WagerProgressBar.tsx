@@ -96,7 +96,6 @@ const WagerProgessBar: React.FC<WagerProps> = ({token, goal}) => {
         })
           .then(r => r.json())
           .then(data => {
-            console.log('data returned:', data)
             if(data.errors || data.data.user.activeRollovers === null){
               return
             }
