@@ -20,19 +20,65 @@ const WagerProgessBar: React.FC<WagerProps> = ({token, goal}) => {
     }, [token])
 
     const getWager = () => {
-        var query = `query VipProgressMeta {
+      var query = `query userRollover {
+        user {
+          rolloverList(limit: 10, offset: 0) {
+            ...RolloverFragment
+            __typename
+          }
+          activeRollovers {
+            id
+            active
             user {
               id
-              flagProgress {
-                flag
-                progress
+              __typename
+            }
+            amount
+            lossAmount
+            createdAt
+            note
+            currency
+            expectedAmount
+            expectedAmountMin
+            progress
+            activeBets {
+              id
+              iid
+              game {
+                id
+                slug
+                name
+                __typename
+              }
+              bet {
                 __typename
               }
               __typename
             }
-          }`;
+            __typename
+          }
+          __typename
+        }
+      }
+      
+      fragment RolloverFragment on Rollover {
+        id
+        active
+        user {
+          id
+          __typename
+        }
+        amount
+        lossAmount
+        createdAt
+        currency
+        expectedAmount
+        expectedAmountMin
+        progress
+        note
+      }`;
         
-        var operationName = "VipProgressMeta";
+        var operationName = "userRollover";
         
         fetch('https://api.stake.bet/graphql', {
           method: 'POST',
@@ -51,13 +97,12 @@ const WagerProgessBar: React.FC<WagerProps> = ({token, goal}) => {
           .then(r => r.json())
           .then(data => {
             console.log('data returned:', data)
-            if(data.errors || data.data.user.flagProgress === null){
+            if(data.errors || data.data.user.activeRollovers === null){
               return
             }
-            setProgress(data.data.user.flagProgress.progress)
+            setProgress(data.data.user.activeRollovers.progress)
         });
 
-        // setProgress(prev => (prev + 14.5))
     }
      
 
