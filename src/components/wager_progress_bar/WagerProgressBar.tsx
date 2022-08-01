@@ -9,14 +9,15 @@ type WagerProps = {
 const WagerProgessBar: React.FC<WagerProps> = ({token, goal}) => {
 
     const [progress, setProgress] = useState<number>(0);
-
-
+    
     useEffect(()=>{
-      getWager();
-        const interval = setInterval(() => {
-            getWager();
-        }, 8000);
-    }, [])
+
+      const interval = setInterval(() => {
+        getWager();
+      }, 8000);
+
+      return () => clearInterval(interval);
+    }, [token])
 
     const getWager = () => {
         var query = `query VipProgressMeta {
@@ -62,7 +63,7 @@ const WagerProgessBar: React.FC<WagerProps> = ({token, goal}) => {
 
   return (
         <div className='progress-bar'>
-            <div className='progress-bar__in' style={{width: ` ${progress}%`}}></div>
+            <div className='progress-bar__in' style={{width: `${progress}%`}}></div>
             <p className='progress-bar__text'>
               ${(Math.round(goal*(progress/100) * 100) / 100).toFixed(2)} / ${goal} 
               <span className='progress-bar__text__percentage'> ({(Math.round(progress * 100) / 100).toFixed(2)}%)</span>

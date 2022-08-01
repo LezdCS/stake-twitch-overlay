@@ -1,16 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import './CurrentGame.scss'
 
-import 'jqueryui';
-
 type CurrentGameProps = {
   token: string,
 }
 
 const CurrentGame: React.FC<CurrentGameProps> = ({token}) => {
-
-    useEffect(()=>{
-    })
 
     const getUserActiveMachine = () => {
       var query = `query ????????? {
