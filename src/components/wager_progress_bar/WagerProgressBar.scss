@@ -1,0 +1,18 @@
+.wager{
+    background-color: #101c4080;
+    width: 20%;
+    padding: 1px 0rem;
+    text-align: center;
+    border-radius: 16px;
+    color: white;
+    font-size: 20px;
+    border: 1px #1b1d1f90 solid;
+
+    &__progress-bar{
+        &__text{
+            &__percentage{
+                font-size: 16px;
+            }
+        }
+    }
+}
