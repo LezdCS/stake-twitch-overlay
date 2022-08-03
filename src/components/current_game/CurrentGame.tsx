@@ -616,8 +616,8 @@ const CurrentGame: React.FC<CurrentGameProps> = ({token}) => {
           'Origin': 'https://stake.com'
         },
         body: JSON.stringify({
-          operationName,
           query,
+          variables,
         })
       })
         .then(r => r.json())
@@ -1196,17 +1196,35 @@ const CurrentGame: React.FC<CurrentGameProps> = ({token}) => {
 
   return (
     <div className='current-game'> 
+      <img className='current-game__image' src='https://mediumrare.imgix.net/33cd5a34c3937da326652a3beb44fe9c3680118c363a060ca5670847595561a5?&h=295&w=220&dpr=1.5&format=auto&auto=format&q=50'></img>
       <div className='current-game__basics'>
-        <p>CURRENT GAME</p>
-        <p>WANTED DEAD OR ALIVE</p>
-        <p>HACKSAW GAMING</p>
+        <h2>🎰 CURRENT SLOT</h2>
+        <div>
+          <p className='current-game__basics__game-name'>DORK UNIT</p>
+          <p className='current-game__basics__game-provider'>HACKSAW GAMING</p>
+        </div>
       </div>
+      <div className='divider'></div>
       <div className='current-game__infos'>
-        <p>POTENTIAL: 12500X</p>
+        <h2>❓ SLOT INFOS</h2>
+        <div className='row'>
+          <p>POTENTIAL</p>
+          <p>12500X</p>
+        </div>
       </div>
+      <div className='divider'></div>
       <div className='current-game__personnal-best'>
-        <p>BEST X: ($8) 24578.45X</p>
-        <p>WIN: ($8) $14,726</p>
+        <h2>🌟 PERSONAL BEST</h2>
+        <div className='current-game__personnal-best__content'>
+          <div className='row'>
+            <p>WIN</p>
+            <p>($8) $14,726</p>
+          </div>
+          <div className='row'>
+            <p>X</p>
+            <p>($8) 24578.45X</p>
+          </div>
+        </div>
       </div>
     </div>
   );
