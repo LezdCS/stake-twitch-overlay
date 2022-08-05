@@ -12,6 +12,7 @@ const WagerProgessBar: React.FC<WagerProps> = ({token, goal}) => {
     
     useEffect(()=>{
 
+      getWager();
       const interval = setInterval(() => {
         getWager();
       }, 8000);
@@ -96,7 +97,7 @@ const WagerProgessBar: React.FC<WagerProps> = ({token, goal}) => {
         })
           .then(r => r.json())
           .then(data => {
-            if(data.errors || data.data.user.activeRollovers === null){
+            if(data.errors || data.data.user.activeRollovers.length === 0){
               return
             }
             setProgress(data.data.user.activeRollovers[0].progress*100)
