@@ -9,6 +9,7 @@ type Slot = {
   name: string,
   provider: string,
   thumbnailUrl: string,
+  topMultiplier: Array<any>,
 }
 
 const CurrentGame: React.FC<CurrentGameProps> = ({token}) => {
@@ -17,6 +18,7 @@ const CurrentGame: React.FC<CurrentGameProps> = ({token}) => {
       name: "None",
       provider: "None",
       thumbnailUrl: '',
+      topMultiplier: [1,1,1]
     });
 
     const getLastBetGameDetails = (slug:string) => {
@@ -639,7 +641,12 @@ const CurrentGame: React.FC<CurrentGameProps> = ({token}) => {
           let slot:Slot = {
             name: data.data.slugKuratorGame.name,
             provider: data.data.slugKuratorGame.data != null ? data.data.slugKuratorGame.data.provider.name : 'Stake',
-            thumbnailUrl: data.data.slugKuratorGame.thumbnailUrl
+            thumbnailUrl: data.data.slugKuratorGame.thumbnailUrl,
+            topMultiplier: [
+              data.data.slugKuratorGame.multiplierLeaderboard[0].payoutMultiplier,
+              data.data.slugKuratorGame.multiplierLeaderboard[1].payoutMultiplier,
+              data.data.slugKuratorGame.multiplierLeaderboard[2].payoutMultiplier,
+            ],
           }
 
           setLastSlot(slot)
@@ -1211,7 +1218,7 @@ const CurrentGame: React.FC<CurrentGameProps> = ({token}) => {
           .then(r => r.json())
           .then(data => {
             console.log('data returned:', data)
-            if(data.data.user.houseBetList > 0){
+            if(data.data.user.houseBetList.length > 0){
               getLastBetGameDetails(data.data.user.houseBetList[0].game.slug)
             }
         });
@@ -1237,12 +1244,20 @@ const CurrentGame: React.FC<CurrentGameProps> = ({token}) => {
           <p className='current-game__basics__game-provider'>{lastSlot.provider.toUpperCase()}</p>
         </div>
       </div>
-      {/* <div className='divider'></div>
+      <div className='divider'></div>
       <div className='current-game__infos'>
-        <h2>❓ SLOT INFOS</h2>
+        <h2>👑 TOP SLOT HITS</h2>
         <div className='row'>
-          <p>POTENTIAL</p>
-          <p>12500X</p>
+          <p>🥇</p>
+          <p>{lastSlot.topMultiplier[0]} X</p>
+        </div>
+        <div className='row'>
+          <p>🥈</p>
+          <p>{lastSlot.topMultiplier[1]} X</p>
+        </div>
+        <div className='row'>
+          <p>🥉</p>
+          <p>{lastSlot.topMultiplier[2]} X</p>
         </div>
       </div>
       <div className='divider'></div>
@@ -1258,7 +1273,7 @@ const CurrentGame: React.FC<CurrentGameProps> = ({token}) => {
             <p>($8) 24578.45X</p>
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }
