@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './App.scss';
+import CurrentGame from './components/current_game/CurrentGame';
 import Settings from './components/settings/Settings';
 import WagerProgessBar from './components/wager_progress_bar/WagerProgressBar';
 
@@ -19,6 +20,8 @@ const App: React.FC = () => {
     <div className="App">
 
       <WagerProgessBar token={token} goal={wagerGoal}></WagerProgessBar>
+
+      <CurrentGame token={token}></CurrentGame>
 
       <Settings token={token} setToken={setToken} wagerGoal={wagerGoal} setWagerGoal={setWagerGoal}></Settings>
     </div>

@@ -1260,7 +1260,7 @@ const CurrentGame: React.FC<CurrentGameProps> = ({token}) => {
           <p>{lastSlot.topMultiplier[2]} X</p>
         </div>
       </div>
-      <div className='divider'></div>
+      {/* <div className='divider'></div>
       <div className='current-game__personnal-best'>
         <h2>🌟 PERSONAL BEST</h2>
         <div className='current-game__personnal-best__content'>
@@ -1273,7 +1273,7 @@ const CurrentGame: React.FC<CurrentGameProps> = ({token}) => {
             <p>($8) 24578.45X</p>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
