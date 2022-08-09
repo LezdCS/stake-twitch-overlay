@@ -4,9 +4,10 @@ import './WagerProgressBar.scss'
 type WagerProps = {
   token: string,
   goal: number,
+  positions: Array<any> | null
 }
 
-const WagerProgessBar: React.FC<WagerProps> = ({token, goal}) => {
+const WagerProgessBar: React.FC<WagerProps> = ({token, goal, positions}) => {
 
     const [progress, setProgress] = useState<number>(0);
     
@@ -105,9 +106,15 @@ const WagerProgessBar: React.FC<WagerProps> = ({token, goal}) => {
 
     }
      
+  let pos = null
+  if(positions !== null){
+    if(positions?.find((pos:any) => String(Object.keys(pos)) === "progress-bar")){
+      pos =  positions?.find((pos:any) => String(Object.keys(pos)) === "progress-bar")["progress-bar"]
+    }
+  }
 
   return (
-        <div className='progress-bar' id='progress-bar'>
+        <div className='progress-bar' id='progress-bar' style={{top: pos !== null ? `${pos.top}px` : '', left: pos !== null ? `${pos.left}px` : ''}}>
             <div className='progress-bar__in' style={{width: `${progress}%`}}></div>
             <p className='progress-bar__text'>
               ${(Math.round(goal*(progress/100) * 100) / 100).toFixed(2)} / ${goal} 

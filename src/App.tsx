@@ -71,14 +71,16 @@ const App: React.FC = () => {
       elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
       elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
 
-      let pos:Position = {[elmnt.id]: {top: Number(elmnt.offsetTop - pos2), left: Number(elmnt.offsetLeft - pos1)}};
-      updatePositions(pos)
+      
     }
 
     function closeDragElement() {
       // stop moving when mouse button is released:
       document.onmouseup = null;
       document.onmousemove = null;
+
+      let pos:Position = {[elmnt.id]: {top: Number(elmnt.offsetTop - pos2), left: Number(elmnt.offsetLeft - pos1)}};
+      updatePositions(pos)
     }
   }
 
@@ -86,9 +88,15 @@ const App: React.FC = () => {
 
     let newPositions:Array<Position> = []
     if(positions !== null){
+      newPositions = [...positions]
       let positionToUpdate = positions.find((position:any) => String(Object.keys(position)) === String(Object.keys(pos)))
 
       if(positionToUpdate){
+        let key = String(Object.keys(pos))
+        positionToUpdate[key] = pos[key]
+        newPositions = [...positions]
+      }else{
+        newPositions.push(pos)
       }
     }else{
       newPositions.push(pos)
@@ -101,9 +109,9 @@ const App: React.FC = () => {
   return (
     <div className="App">
 
-      <WagerProgessBar token={token} goal={wagerGoal}></WagerProgessBar>
+      <WagerProgessBar token={token} goal={wagerGoal} positions={positions}></WagerProgessBar>
 
-      <CurrentGame token={token}></CurrentGame>
+      <CurrentGame token={token} positions={positions}></CurrentGame>
 
       <Settings token={token} setToken={setToken} wagerGoal={wagerGoal} setWagerGoal={setWagerGoal} setPositions={setPositions}></Settings>
     </div>

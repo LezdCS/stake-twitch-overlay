@@ -3,6 +3,7 @@ import './CurrentGame.scss'
 
 type CurrentGameProps = {
   token: string,
+  positions: Array<any> | null
 }
 
 type Slot = {
@@ -12,7 +13,7 @@ type Slot = {
   topMultiplier: Array<any>,
 }
 
-const CurrentGame: React.FC<CurrentGameProps> = ({token}) => {
+const CurrentGame: React.FC<CurrentGameProps> = ({token, positions}) => {
 
     const [lastSlot, setLastSlot] = useState<Slot>({
       name: "None",
@@ -1232,8 +1233,14 @@ const CurrentGame: React.FC<CurrentGameProps> = ({token}) => {
     return () => clearInterval(interval);
   }, [token])
 
+  let pos = null
+  if(positions !== null){
+    if(positions?.find((pos:any) => String(Object.keys(pos)) === "current-game")){
+      pos = positions?.find((pos:any) => String(Object.keys(pos)) === "current-game")["current-game"]
+    }
+  }
   return (
-    <div className='current-game' id='current-game'> 
+    <div className='current-game' id='current-game' style={{top: pos !== null ? `${pos.top}px` : '', left: pos !== null ? `${pos.left}px` : ''}}> 
       <img className='current-game__image' src={lastSlot.thumbnailUrl}></img>
       <div className='current-game__basics'>
         <h2>🎰 CURRENT SLOT</h2>
