@@ -107,7 +107,7 @@ const WagerProgessBar: React.FC<WagerProps> = ({token, goal}) => {
      
 
   return (
-        <div className='progress-bar'>
+        <div className='progress-bar' id='progress-bar'>
             <div className='progress-bar__in' style={{width: `${progress}%`}}></div>
             <p className='progress-bar__text'>
               ${(Math.round(goal*(progress/100) * 100) / 100).toFixed(2)} / ${goal} 

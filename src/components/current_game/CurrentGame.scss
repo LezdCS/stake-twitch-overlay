@@ -1,13 +1,20 @@
 .current-game{
-    display: flex;
-    color: white;
+    position: absolute;
+    top: 150px;
+
     background-color: #000000d2;
-    align-items: flex-start;
-    padding: 1rem 1rem;
-    margin-top: 2rem;
-    gap: 2rem;
-    border-radius: 10px;
+    color: white;
+
     width: fit-content;
+    padding: 1rem 1rem;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: flex-start;
+
+    &:hover{
+        cursor: move;
+    }
 
     .row{
         display: flex;
@@ -22,6 +29,7 @@
 
     * > div{
         min-width: 160px;
+        padding-left: 2rem;
     }
 
     &__image{

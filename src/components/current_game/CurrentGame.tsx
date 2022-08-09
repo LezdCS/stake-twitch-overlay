@@ -636,7 +636,6 @@ const CurrentGame: React.FC<CurrentGameProps> = ({token}) => {
       })
         .then(r => r.json())
         .then(data => {
-          console.log('data returned:', data)
           
           let slot:Slot = {
             name: data.data.slugKuratorGame.name,
@@ -1217,7 +1216,6 @@ const CurrentGame: React.FC<CurrentGameProps> = ({token}) => {
         })
           .then(r => r.json())
           .then(data => {
-            console.log('data returned:', data)
             if(data.data.user.houseBetList.length > 0){
               getLastBetGameDetails(data.data.user.houseBetList[0].game.slug)
             }
@@ -1235,7 +1233,7 @@ const CurrentGame: React.FC<CurrentGameProps> = ({token}) => {
   }, [token])
 
   return (
-    <div className='current-game'> 
+    <div className='current-game' id='current-game'> 
       <img className='current-game__image' src={lastSlot.thumbnailUrl}></img>
       <div className='current-game__basics'>
         <h2>🎰 CURRENT SLOT</h2>

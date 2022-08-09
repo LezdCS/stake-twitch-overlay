@@ -6,9 +6,10 @@ type SettingsProps = {
     setToken: Function,
     wagerGoal: number,
     setWagerGoal: Function,
+    setPositions : Function,
 }   
 
-const Settings: React.FC<SettingsProps> = ({token, setToken, wagerGoal, setWagerGoal}) => {
+const Settings: React.FC<SettingsProps> = ({token, setToken, wagerGoal, setWagerGoal, setPositions}) => {
 
     function setCookie(cName:string, cValue:string, expDays:number) {
         let date = new Date();
@@ -27,8 +28,14 @@ const Settings: React.FC<SettingsProps> = ({token, setToken, wagerGoal, setWager
         setToken(e.target.value)
     }
 
+    const resetElementsPosition = () => {
+        document.cookie = 'POSITIONS=; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        setPositions(null)
+    }
+
     return (
-        <div className='settings'> 
+        <div className='settings'>
+            <button onClick={resetElementsPosition}>Reset elements position</button>
             <label>API Token:
                 <input value={token} onChange={handleChangeToken} type="password"></input>
             </label>

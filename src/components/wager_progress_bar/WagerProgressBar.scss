@@ -1,22 +1,25 @@
 .progress-bar{
-    position: relative;
-    top: 0;
-    left: 0;
+    position: absolute;
+
+    background-color: #101c4080;
+    color: white;
 
     width: 20%;
     height: 50px;
-    color: white;
     font-size: 20px;
     border: 1px #1b1d1f solid;
     border-radius: 16px;
-    background-color: #101c4080;
-        
+  
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
 
     overflow: hidden;
+
+    &:hover{
+        cursor: move;
+    }
 
     &__in{
         height: 50px;
