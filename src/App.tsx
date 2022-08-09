@@ -85,10 +85,8 @@ const App: React.FC = () => {
   const updatePositions = (pos:Position) => {
 
     let newPositions:Array<Position> = []
-    console.log(positions)
     if(positions !== null){
       let positionToUpdate = positions.find((position:any) => String(Object.keys(position)) === String(Object.keys(pos)))
-      console.log(positionToUpdate)
 
       if(positionToUpdate){
       }
