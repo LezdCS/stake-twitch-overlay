@@ -3,6 +3,7 @@ import './App.scss';
 import CurrentGame from './components/current_game/CurrentGame';
 import Settings from './components/settings/Settings';
 import WagerProgessBar from './components/wager_progress_bar/WagerProgressBar';
+import CookiesUtils from './utils/CookiesUtils';
 
 type Position = {
   [id: string]: { 
@@ -13,9 +14,9 @@ type Position = {
 
 const App: React.FC = () => {
 
-  const [token, setToken] = useState<string>(getCook("TOKEN"));
-  const [wagerGoal, setWagerGoal] = useState<number>(Number(getCook("WAGER_GOAL")));
-  const [positions, setPositions] = useState<Array<Position> | null>( getCook("POSITIONS") === "" ? null : JSON.parse(getCook("POSITIONS")));
+  const [token, setToken] = useState<string>(CookiesUtils.getCook("TOKEN"));
+  const [wagerGoal, setWagerGoal] = useState<number>(Number(CookiesUtils.getCook("WAGER_GOAL")));
+  const [positions, setPositions] = useState<Array<Position> | null>(CookiesUtils.getCook("POSITIONS") === "" ? null : JSON.parse(CookiesUtils.getCook("POSITIONS")));
 
   useEffect(() => {
     
@@ -23,20 +24,6 @@ const App: React.FC = () => {
     dragElement(document.getElementById("current-game"));
 
   }, [positions]);
-
-  function setCookie(cName:string, cValue:string, expDays:number) {
-    let date = new Date();
-    date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
-    const expires = "expires=" + date.toUTCString();
-    document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
-}
-
-  function getCook(cookiename:string) {
-    // Get name followed by anything except a semicolon
-    var cookiestring=RegExp(cookiename+"=[^;]+").exec(document.cookie);
-    // Return everything after the equal sign, or an empty string if the cookie name not found
-    return decodeURIComponent(!!cookiestring ? cookiestring.toString().replace(/^[^=]+./,"") : "");
-  }
 
   function dragElement(elmnt:any) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -103,7 +90,7 @@ const App: React.FC = () => {
     }
 
     setPositions(newPositions)
-    setCookie("POSITIONS", JSON.stringify(newPositions), 365)
+    CookiesUtils.setCookie("POSITIONS", JSON.stringify(newPositions), 365)
   }
 
   return (
